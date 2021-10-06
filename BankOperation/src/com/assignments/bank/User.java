@@ -4,9 +4,9 @@ public class User {
     private String name;
     private String mobileNo;
     private int accountNo;
-    private int balance;
+    private double balance;
 
-    public User(String name, String mobileNo, int accountNo, int balance) {
+    public User(String name, String mobileNo, int accountNo, double balance) {
         this.name = name;
         this.mobileNo = mobileNo;
         this.accountNo = accountNo;
@@ -37,11 +37,11 @@ public class User {
         this.accountNo = accountNo;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }
