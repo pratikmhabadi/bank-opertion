@@ -1,14 +1,21 @@
 package com.assignments.bank;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Accounts {
     Scanner sc = new Scanner(System.in);
 
     //for create new account number
-    public int createAccountNo() {
+    public int createAccountNo(List<User> userList) {
         Random random = new Random();
-        return random.nextInt(9999);
+        int accountNo = random.nextInt(9999);
+        if(!checkAccountNo(userList,accountNo)) {
+            return random.nextInt(9999);
+        }else {
+            return createAccountNo(userList);
+        }
     }
 
     //find account
@@ -21,19 +28,35 @@ public class Accounts {
         return false;
     }
 
+    public boolean mobileValid(String mobileNo){
+        Pattern pattern = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+        Matcher match = pattern.matcher(mobileNo);
+        return match.find() && match.group().equals(mobileNo);
+    }
+
     //for add new user
     public void addUser(List<User> userList) {
         System.out.println("Name:");
         String name = sc.next();//name input
         System.out.println("Mobile No:");
         String mobileNo = sc.next();//mobile input
+        if(!mobileValid(mobileNo)){
+            int number=1;
+            while (number>0){
+                System.out.println("Mobile number is Invalid , Enter again");
+                mobileNo =sc.next();
+                if(mobileValid(mobileNo)){
+                    number=0;
+                }
+            }
+        }
         System.out.println("Enter Your initial Amount");
         int amount;
         amount = sc.nextInt();//initial amount input
         if (amount < 0) {
             amount = 0;
         }
-        int accountNo = createAccountNo();//account number
+        int accountNo = createAccountNo(userList);//account number
         userList.add(new User(name, mobileNo, accountNo, amount));
         System.out.println("Account created successfully!");
         System.out.println("Your Account Number is " + accountNo);

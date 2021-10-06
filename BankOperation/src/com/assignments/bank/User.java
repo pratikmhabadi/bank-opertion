@@ -1,24 +1,24 @@
 package com.assignments.bank;
 
 public class User {
-    private String Name;
+    private String name;
     private String mobileNo;
     private int accountNo;
     private int balance;
 
     public User(String name, String mobileNo, int accountNo, int balance) {
-        Name = name;
+        this.name = name;
         this.mobileNo = mobileNo;
         this.accountNo = accountNo;
         this.balance = balance;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getMobileNo() {
@@ -43,16 +43,6 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "Name='" + Name + '\'' +
-                ", mobileNo='" + mobileNo + '\'' +
-                ", accountNo=" + accountNo +
-                ", balance=" + balance +
-                '}';
     }
 }
 
