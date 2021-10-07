@@ -23,11 +23,11 @@ public class Bank {
         int work = 1;
         while (work > 0) {
             System.out.println("Create New Account = 1 \n" +
-                    "Check Balance =2 \n" +
+                    "Check Balance = 2 \n" +
                     "Deposit = 3 \n" +
                     "Withdraw = 4 \n" +
-            "Display Account in Sorted Ascending order =5 \n" +
-                    "User Details By Mobile =6 ");
+            "Display Account No and Users in Sorted Ascending order = 5 \n" +
+                    "User Details By Mobile No = 6 ");
             System.out.println("Choose your options :");
             System.out.println("---------------------------------------------");
             int operationNo = sc.nextInt();

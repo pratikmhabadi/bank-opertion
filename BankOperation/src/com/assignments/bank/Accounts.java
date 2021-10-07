@@ -3,6 +3,7 @@ package com.assignments.bank;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Accounts {
     //for create new account number
@@ -122,23 +123,8 @@ public class Accounts {
         return null;
     }
 
-    //sorting account number in ascending order
-    public List<Integer> sortList(List<User> userList) {
-        List<Integer> sortList = new ArrayList<>();
-        for (User user : userList) {
-            sortList.add(user.getAccountNo());
-        }
-        Collections.sort(sortList);
-        return sortList;
-    }
-
-    //printing account number py sorted account list
-    public void getUserByAccountNo(List<User> userList, int accountNo) {
-        for (User user : userList) {
-            if (user.getAccountNo() == accountNo) {
-                System.out.println(user.getAccountNo());
-            }
-        }
+    public List<User> getAllUserByAscendingAccountNo(List<User> userList){
+        return userList.stream().sorted(Comparator.comparingInt(User::getAccountNo)).collect(Collectors.toList());
     }
 
 
@@ -186,12 +172,13 @@ public class Accounts {
                     break;
 
                 case 5://getListByAccountNo
-                    List<Integer> integer = sortList(userList);
-                    if (integer.size() > 0) {
-                        for (int number : integer) {
-                            getUserByAccountNo(userList, number);
+                    List<User> list = getAllUserByAscendingAccountNo(userList);
+                    if(list.size()>0) {
+                        for(User user : list){
+                            System.out.println("Name : "+user.getName()+" Account No : "+user.getAccountNo());
+                            System.out.println("-------------------------------------");
                         }
-                    } else {
+                    }else{
                         System.out.println("No record");
                     }
                     break;
@@ -202,9 +189,11 @@ public class Accounts {
                     User mobileUser = getUserByMobileNo(userList, mobileNo);
                     if (mobileUser != null) {
                         System.out.println("---------Details of User------");
-                        System.out.println("Name of User : " + mobileUser.getName());
-                        System.out.println("Mobile No of User : " + mobileUser.getMobileNo());
-                        System.out.println("Account Balance of User : " + mobileUser.getBalance());
+                        System.out.println("Account Number : " +mobileUser.getAccountNo());
+                        System.out.println("Name : " + mobileUser.getName());
+                        System.out.println("Mobile : " + mobileUser.getMobileNo());
+                        System.out.println("Account Balance : " + mobileUser.getBalance());
+                        System.out.println("------------------------------");
                     } else {
                         System.out.println("Didn't find any record with your mobile number");
                     }
